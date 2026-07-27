@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>7-Brand BEV Private Leasing Comparison — Sweden 2026</title>
+<style>
+  :root {
+    --bg: #F4F6FA; --surface: #FFFFFF; --surface-2: #EEF1F7; --border: #D8DEE9;
+    --text: #0F1520; --text-2: #4A5568; --text-3: #718096;
+    --positive: #15803D; --positive-bg: #F0FDF4;
+    --warning: #B45309; --warning-bg: #FFFBEB;
+    --risk: #B91C1C; --risk-bg: #FEF2F2;
+    --info: #1A5FAD; --info-bg: #EAF1FB;
+    --m3-col: #EAF1FB; --my-col: #F0FDF4; --m3-head: #1A5FAD; --my-head: #15803D;
+    --vv-col: #EEF2FF; --vv-head: #3730A3;
+    --mb-col: #F0F4F8; --mb-head: #1B3A5E;
+    --to-col: #F0FAFA; --to-head: #0F766E;
+    --bw-col: #EFF4FF; --bw-head: #003776;
+    --ps-col: #F5F5F5; --ps-head: #222222;
+    --ki-col: #FFF0F0; --ki-head: #BB0000;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0D1117; --surface: #161B22; --surface-2: #1C2333; --border: #2A3550;
+      --text: #EEF1F7; --text-2: #A0AABE; --text-3: #6B7A94;
+      --positive: #22C55E; --positive-bg: #052E16;
+      --warning: #F59E0B; --warning-bg: #1C1400;
+      --risk: #F87171; --risk-bg: #1C0505;
+      --info: #4A8FD4; --info-bg: #1A2D4A;
+      --m3-col: #1A2D4A; --my-col: #052E16; --m3-head: #4A8FD4; --my-head: #22C55E;
+      --vv-col: #1E1B4B; --vv-head: #818CF8;
+      --mb-col: #0F1E2E; --mb-head: #7BAFD4;
+      --to-col: #0B2020; --to-head: #2DD4BF;
+      --bw-col: #0A1A35; --bw-head: #6BA3E8;
+      --ps-col: #1A1A1A; --ps-head: #D0D0D0;
+      --ki-col: #2A0808; --ki-head: #FF6B6B;
+    }
+  }
+  :root[data-theme="light"] {
+    --bg: #F4F6FA; --surface: #FFFFFF; --surface-2: #EEF1F7; --border: #D8DEE9;
+    --text: #0F1520; --text-2: #4A5568; --text-3: #718096;
+    --positive: #15803D; --positive-bg: #F0FDF4; --warning: #B45309; --warning-bg: #FFFBEB;
+    --risk: #B91C1C; --risk-bg: #FEF2F2; --info: #1A5FAD; --info-bg: #EAF1FB;
+    --m3-col: #EAF1FB; --my-col: #F0FDF4; --m3-head: #1A5FAD; --my-head: #15803D;
+    --vv-col: #EEF2FF; --vv-head: #3730A3; --mb-col: #F0F4F8; --mb-head: #1B3A5E;
+    --to-col: #F0FAFA; --to-head: #0F766E; --bw-col: #EFF4FF; --bw-head: #003776;
+    --ps-col: #F5F5F5; --ps-head: #222222; --ki-col: #FFF0F0; --ki-head: #BB0000;
+  }
+  :root[data-theme="dark"] {
+    --bg: #0D1117; --surface: #161B22; --surface-2: #1C2333; --border: #2A3550;
+    --text: #EEF1F7; --text-2: #A0AABE; --text-3: #6B7A94;
+    --positive: #22C55E; --positive-bg: #052E16; --warning: #F59E0B; --warning-bg: #1C1400;
+    --risk: #F87171; --risk-bg: #1C0505; --info: #4A8FD4; --info-bg: #1A2D4A;
+    --m3-col: #1A2D4A; --my-col: #052E16; --m3-head: #4A8FD4; --my-head: #22C55E;
+    --vv-col: #1E1B4B; --vv-head: #818CF8; --mb-col: #0F1E2E; --mb-head: #7BAFD4;
+    --to-col: #0B2020; --to-head: #2DD4BF; --bw-col: #0A1A35; --bw-head: #6BA3E8;
+    --ps-col: #1A1A1A; --ps-head: #D0D0D0; --ki-col: #2A0808; --ki-head: #FF6B6B;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: var(--bg); color: var(--text);
+    font-size: 15px; line-height: 1.6; -webkit-font-smoothing: antialiased;
+    padding: 32px 20px 80px;
+  }
+  .wrap { max-width: 1100px; margin: 0 auto; }
+
+  .doc-header { margin-bottom: 32px; border-bottom: 1px solid var(--border); padding-bottom: 20px; }
+  .eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-3); margin-bottom: 6px; }
+  .doc-title { font-family: Georgia, "Times New Roman", serif; font-size: 26px; font-weight: normal; line-height: 1.25; color: var(--text); text-wrap: balance; margin-bottom: 6px; }
+  .doc-subtitle { font-size: 13px; color: var(--text-3); line-height: 1.5; }
+  .badge-row { display: flex; gap: 7px; flex-wrap: wrap; margin-top: 14px; }
+  .badge { font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 99px; letter-spacing: 0.04em; }
+  .badge-live { background: var(--positive-bg); color: var(--positive); }
+  .badge-est  { background: var(--warning-bg);  color: var(--warning); }
+  .badge-info { background: var(--info-bg); color: var(--info); }
+
+  .section { margin-bottom: 36px; }
+  .section-title {
+    font-family: Georgia, "Times New Roman", serif; font-size: 17px; font-weight: normal;
+    color: var(--text); margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--border);
+  }
+
+  .table-wrap { background: var(--surface); border-radius: 12px; overflow: hidden; overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; font-size: 13px; }
+  table th {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 10px 12px; background: var(--surface-2); color: var(--text-3); text-align: left; white-space: nowrap;
+  }
+  table td { padding: 10px 12px; border-bottom: 1px solid var(--border); color: var(--text-2); vertical-align: middle; }
+  table td:first-child { color: var(--text); font-weight: 500; }
+  table tr:last-child td { border-bottom: none; }
+  table tr:hover td { background: var(--surface-2); }
+  .num { font-variant-numeric: tabular-nums; font-weight: 600; color: var(--text); }
+  .num-best { font-variant-numeric: tabular-nums; font-weight: 700; color: var(--positive); }
+  .tag { display: inline-block; font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 4px; letter-spacing: 0.04em; }
+  .tag-yes { background: var(--positive-bg); color: var(--positive); }
+  .tag-no  { background: var(--risk-bg); color: var(--risk); }
+  .tag-half { background: var(--warning-bg); color: var(--warning); }
+  .tag-est { background: var(--warning-bg); color: var(--warning); }
+  .tag-awd { background: var(--info-bg); color: var(--info); }
+  .tag-fwd { background: var(--surface-2); color: var(--text-3); }
+  .tag-na  { background: var(--surface-2); color: var(--text-3); font-style: italic; }
+
+  .brand-badge {
+    display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 8px;
+    border-radius: 4px; letter-spacing: 0.05em; white-space: nowrap;
+  }
+  .brand-tesla  { background: var(--my-col); color: var(--my-head); }
+  .brand-volvo  { background: var(--vv-col); color: var(--vv-head); }
+  .brand-mb     { background: var(--mb-col); color: var(--mb-head); }
+  .brand-toyota { background: var(--to-col); color: var(--to-head); }
+  .brand-bmw    { background: var(--bw-col); color: var(--bw-head); }
+  .brand-polestar { background: var(--ps-col); color: var(--ps-head); }
+  .brand-kia    { background: var(--ki-col); color: var(--ki-head); }
+
+  .row-tesla    { background: var(--my-col) !important; }
+  .row-volvo    { background: var(--vv-col) !important; }
+  .row-mb       { background: var(--mb-col) !important; }
+  .row-toyota   { background: var(--to-col) !important; }
+  .row-bmw      { background: var(--bw-col) !important; }
+  .row-polestar { background: var(--ps-col) !important; }
+  .row-kia      { background: var(--ki-col) !important; }
+  .row-tesla td, .row-volvo td, .row-mb td, .row-toyota td,
+  .row-bmw td, .row-polestar td, .row-kia td { border-bottom-color: var(--border); }
+
+  .winner-row td:last-child::after { content: " ★"; color: var(--positive); font-weight: 700; }
+
+  .callout { padding: 14px 16px; border-radius: 8px; font-size: 13px; margin-top: 14px; border-left: 3px solid; }
+  .callout-info  { background: var(--info-bg);    border-color: var(--info);    color: var(--info); }
+  .callout-warn  { background: var(--warning-bg); border-color: var(--warning); color: var(--warning); }
+  .callout-good  { background: var(--positive-bg); border-color: var(--positive); color: var(--positive); }
+  .callout-risk  { background: var(--risk-bg);    border-color: var(--risk);    color: var(--risk); }
+  .callout p { color: var(--text-2); margin-top: 4px; }
+  .callout strong { color: inherit; }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+  @media (max-width: 680px) { .grid-2 { grid-template-columns: 1fr; } }
+
+  .card { background: var(--surface); border-radius: 10px; padding: 16px 18px; border: 1px solid var(--border); }
+  .card-title { font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-3); margin-bottom: 8px; }
+  .card-value { font-size: 22px; font-weight: 700; font-variant-numeric: tabular-nums; color: var(--text); }
+  .card-sub   { font-size: 12px; color: var(--text-3); margin-top: 2px; }
+
+  .note { font-size: 11px; color: var(--text-3); margin-top: 10px; line-height: 1.5; }
+  sup { font-size: 9px; }
+
+  .inc-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  .inc-table th { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; padding: 8px 10px; background: var(--surface-2); color: var(--text-3); text-align: center; white-space: nowrap; }
+  .inc-table th:first-child { text-align: left; }
+  .inc-table td { padding: 7px 10px; border-bottom: 1px solid var(--border); color: var(--text-2); text-align: center; vertical-align: middle; }
+  .inc-table td:first-child { text-align: left; font-weight: 500; color: var(--text); }
+  .inc-table tr:last-child td { border-bottom: none; }
+  .inc-table tr:hover td { background: var(--surface-2); }
+
+  .verdict-block { background: var(--surface); border-radius: 10px; padding: 16px 18px; border: 1px solid var(--border); margin-bottom: 12px; }
+  .verdict-header { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .verdict-brand { font-size: 14px; font-weight: 700; }
+  .verdict-stars { color: #F59E0B; }
+  .verdict-body { font-size: 13px; color: var(--text-2); line-height: 1.55; }
+  .verdict-pros, .verdict-cons { margin-top: 6px; padding-left: 16px; }
+  .verdict-pros li { color: var(--positive); font-size: 12px; }
+  .verdict-cons li { color: var(--risk); font-size: 12px; }
+  .verdict-pros li span, .verdict-cons li span { color: var(--text-2); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- HEADER -->
+<div class="doc-header">
+  <div class="eyebrow">Private Leasing · Sweden · Gothenburg · July 2026</div>
+  <h1 class="doc-title">BEV Private Leasing Comparison — 7 Brands</h1>
+  <div class="doc-subtitle">Tesla · Volvo · Mercedes-Benz · Toyota · BMW · Polestar · Kia<br>
+  All prices: 36 months, up to 15,000 km/yr · Fully electric (BEV) only · All hidden costs studied<br>
+  <strong>Excludes</strong>: parking, electricity/charging</div>
+  <div class="badge-row">
+    <span class="badge badge-live">tesla.com/se — Verified</span>
+    <span class="badge badge-live">volvocars.com/se — Verified</span>
+    <span class="badge badge-live">mercedes-benz.se — Verified</span>
+    <span class="badge badge-live">toyota.se — Verified</span>
+    <span class="badge badge-live">bmw.se — Verified</span>
+    <span class="badge badge-live">polestar.com/se — Verified</span>
+    <span class="badge badge-live">kia.com/se — Verified</span>
+    <span class="badge badge-est">Insurance estimates: ~750 kr/mån helförsäkring</span>
+    <span class="badge badge-est">Fordonsskatt: 360 kr/yr BEV rate</span>
+  </div>
+</div>
+
+<!-- METHODOLOGY -->
+<div class="section">
+  <h2 class="section-title">How All-In Costs Are Calculated</h2>
+  <div class="callout callout-info">
+    <strong>Methodology:</strong>
+    <p>The <strong>all-in monthly cost</strong> is: <em>advertised lease price</em> + any <em>mandatory additions</em> to reach equivalent full coverage. The user requires 15,000 km/yr (1,500 mil/yr). Where brands only offer 10,000 km/yr as standard, excess km costs are added. Insurance assumptions: helförsäkring ~750 kr/mån (rough market estimate for BEVs; actual depends on driver profile, deductible, and model). Fordonsskatt for BEVs: 360 kr/yr = 30 kr/mån, added when not stated as included. Parking and electricity costs are excluded per user requirement.</p>
+  </div>
+  <div class="callout callout-warn" style="margin-top:10px;">
+    <strong>Rate risk:</strong>
+    <p>Kia and most other brands offer <em>rörlig leasingavgift</em> (variable rate) — monthly payments can increase if market interest rates rise. Polestar and Tesla offer <em>fast ränta</em> (fixed rate) — payments are locked for the full term. BMW, Volvo, Toyota, and Mercedes typically offer variable-rate privatleasing in Sweden.</p>
+  </div>
+</div>
+
+<!-- WHAT'S INCLUDED COMPARISON -->
+<div class="section">
+  <h2 class="section-title">What's Included Per Brand</h2>
+  <div class="table-wrap">
+    <table class="inc-table">
+      <thead>
+        <tr>
+          <th>Brand</th>
+          <th>Service/Maintenance</th>
+          <th>Insurance Type</th>
+          <th>Fordonsskatt</th>
+          <th>Roadside Assist</th>
+          <th>Tire Change</th>
+          <th>Rate Type</th>
+          <th>Km/yr Included</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="brand-badge brand-tesla">Tesla FSL</span></td>
+          <td><span class="tag tag-yes">✓ Included</span></td>
+          <td><span class="tag tag-yes">✓ Helförsäkring</span></td>
+          <td><span class="tag tag-yes">✓ Included</span></td>
+          <td><span class="tag tag-yes">✓ Included</span></td>
+          <td><span class="tag tag-yes">✓ Incl. storage</span></td>
+          <td><span class="tag tag-yes">Fixed</span></td>
+          <td>10,000 (excess 2.50 kr/km)</td>
+        </tr>
+        <tr>
+          <td><span class="brand-badge brand-volvo">Volvo</span></td>
+          <td><span class="tag tag-yes">✓ Included</span></td>
+          <td><span class="tag tag-half">⚠ Halvförsäkring only</span></td>
+          <td><span class="tag tag-no">✗ Extra 30 kr/mån</span></td>
+          <td><span class="tag tag-yes">✓ Included</span></td>
+          <td><span class="tag tag-no">✗ Not included</span></td>
+          <td>Variable</td>
+          <td>15,000 (standard)</td>
+        </tr>
+        <tr>
+          <td><span class="brand-badge brand-mb">Mercedes-Benz</span></td>
+          <td><span class="tag tag-no">✗ Not included</span></td>
+          <td><span class="tag tag-no">✗ Not included</span></td>
+          <td><span class="tag tag-no">✗ Extra 30 kr/mån</span></td>
+          <td><span class="tag tag-no">✗ Not included</span></td>
+          <td><span class="tag tag-no">✗ Not included</span></td>
+          <td>Variable</td>
+          <td>15,000 (standard)</td>
+        </tr>
+        <tr>
+          <td><span class="brand-badge brand-toyota">Toyota</span></td>
+          <td><span class="tag tag-yes">✓ Included</span></td>
+          <td><span class="tag tag-no">✗ Not included</span></td>
+          <td><span class="tag tag-no">✗ Extra 30 kr/mån</span></td>
+          <td><span class="tag tag-yes">✓ Included</span></td>
+          <td><span class="tag tag-no">✗ Not included</span></td>
+          <td>Variable</td>
+          <td>15,000 (standard)</td>
+        </tr>
+        <tr>
+          <td><span class="brand-badge brand-bmw">BMW</span></td>
+          <td><span class="tag tag-yes">✓ 5yr/unlimited km</span></td>
+          <td><span class="tag tag-no">✗ Not included</span></td>
+          <td><span class="tag tag-no">✗ Extra 30 kr/mån</span></td>
+          <td>Basic assist</td>
+          <td><span class="tag tag-no">✗ Not included</span></td>
+          <td>Variable</td>
+          <td>10,000 (excess 1.25 kr/km)</td>
+        </tr>
+        <tr>
+          <td><span class="brand-badge brand-polestar">Polestar</span></td>
+          <td><span class="tag tag-no">✗ Not included</span></td>
+          <td><span class="tag tag-no">✗ Not included</span></td>
+          <td><span class="tag tag-no">✗ Extra 30 kr/mån</span></td>
+          <td><span class="tag tag-yes">✓ 3yr free</span></td>
+          <td><span class="tag tag-no">✗ Not included</span></td>
+          <td><span class="tag tag-yes">Fixed</span></td>
+          <td>15,000 (standard)</td>
+        </tr>
+        <tr>
+          <td><span class="brand-badge brand-kia">Kia</span></td>
+          <td><span class="tag tag-yes">✓ Serviceavtal incl.</span></td>
+          <td><span class="tag tag-no">✗ Not included</span></td>
+          <td><span class="tag tag-no">✗ Extra 30 kr/mån</span></td>
+          <td><span class="tag tag-yes">✓ Included</span></td>
+          <td><span class="tag tag-no">✗ Not included</span></td>
+          <td>Variable</td>
+          <td>15,000 (1,500 mil/yr selectable)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="note">⚠ Volvo halvförsäkring covers fire, theft, glass, and liability — but NOT collision/body damage. Add vagnskadeförsäkring ~330 kr/mån for full coverage. Tesla helförsäkring is truly comprehensive (all risks including collision).<br>
+  Tire change: Tesla FSL includes 2× seasonal tire swap + tire storage per year. All other brands: arrange and pay separately (~200–250 kr/mån estimate).</div>
+</div>
+
+<!-- MASTER SORTED TABLE -->
+<div class="section">
+  <h2 class="section-title">All Models — All-In Monthly Cost at 15,000 km/yr (Sorted Low→High)</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Brand</th>
+          <th>Model</th>
+          <th>Seats</th>
+          <th>Drive</th>
+          <th>WLTP</th>
+          <th>Base kr/mån</th>
+          <th>Km adj.</th>
+          <th>+Insurance</th>
+          <th>+Fskatt</th>
+          <th>All-In /mån</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="row-kia">
+          <td>1</td>
+          <td><span class="brand-badge brand-kia">Kia</span></td>
+          <td>EV2 Long Range</td>
+          <td>5</td>
+          <td><span class="tag tag-fwd">FWD</span></td>
+          <td>~300 km</td>
+          <td class="num">3 746</td>
+          <td>—</td>
+          <td>+750</td>
+          <td>+30</td>
+          <td class="num-best">4 526</td>
+          <td>Variable rate · Service incl.</td>
+        </tr>
+        <tr class="row-volvo">
+          <td>2</td>
+          <td><span class="brand-badge brand-volvo">Volvo</span></td>
+          <td>EX30 Single Motor</td>
+          <td>5</td>
+          <td><span class="tag tag-fwd">FWD</span></td>
+          <td>~430 km</td>
+          <td class="num">4 995</td>
+          <td>—</td>
+          <td>+330 <sup>(vagnskade)</sup></td>
+          <td>+30</td>
+          <td class="num">5 355</td>
+          <td>Halvförsäkring incl. · Service incl.</td>
+        </tr>
+        <tr class="row-kia">
+          <td>3</td>
+          <td><span class="brand-badge brand-kia">Kia</span></td>
+          <td>EV3 Long Range</td>
+          <td>5</td>
+          <td><span class="tag tag-awd">AWD opt.</span></td>
+          <td>~605 km</td>
+          <td class="num">4 757</td>
+          <td>—</td>
+          <td>+750</td>
+          <td>+30</td>
+          <td class="num">5 537</td>
+          <td>Variable rate · Service incl. · AWD available</td>
+        </tr>
+        <tr class="row-kia">
+          <td>4</td>
+          <td><span class="brand-badge brand-kia">Kia</span></td>
+          <td>EV4 Long Range</td>
+          <td>5</td>
+          <td><span class="tag tag-fwd">FWD</span></td>
+          <td>~625 km</td>
+          <td class="num">5 272</td>
+          <td>—</td>
+          <td>+750</td>
+          <td>+30</td>
+          <td class="num">6 052</td>
+          <td>Variable rate · Service incl. · up to 625 km WLTP</td>
+        </tr>
+        <tr class="row-polestar">
+          <td>5</td>
+          <td><span class="brand-badge brand-polestar">Polestar</span></td>
+          <td>2 Business Edition</td>
+          <td>5</td>
+          <td><span class="tag tag-fwd">FWD</span></td>
+          <td>~659 km</td>
+          <td class="num">5 495</td>
+          <td>—</td>
+          <td>+750</td>
+          <td>+30</td>
+          <td class="num">6 275</td>
+          <td>FIXED rate · AWD optional · Long range</td>
+        </tr>
+        <tr class="row-mb">
+          <td>6</td>
+          <td><span class="brand-badge brand-mb">Mercedes</span></td>
+          <td>CLA 250+ Electric</td>
+          <td>5</td>
+          <td><span class="tag tag-fwd">FWD</span></td>
+          <td>~750 km</td>
+          <td class="num">5 495</td>
+          <td>—</td>
+          <td>+750</td>
+          <td>+30</td>
+          <td class="num">6 275</td>
+          <td>Campaign yr1: 4,995; best WLTP of all</td>
+        </tr>
+        <tr class="row-bmw">
+          <td>7</td>
+          <td><span class="brand-badge brand-bmw">BMW</span></td>
+          <td>iX1 eDrive20</td>
+          <td>5</td>
+          <td><span class="tag tag-fwd">FWD</span></td>
+          <td>~508 km</td>
+          <td class="num">4 995</td>
+          <td>+521 <sup>(15k km)</sup></td>
+          <td>+750</td>
+          <td>+30</td>
+          <td class="num">6 296</td>
+          <td>5yr/unlim. service · At 10k base → +521 for 15k</td>
+        </tr>
+        <tr class="row-volvo">
+          <td>8</td>
+          <td><span class="brand-badge brand-volvo">Volvo</span></td>
+          <td>EX40 Single Motor</td>
+          <td>5</td>
+          <td><span class="tag tag-awd">AWD opt.</span></td>
+          <td>~490 km</td>
+          <td class="num">5 995</td>
+          <td>—</td>
+          <td>+330 <sup>(vagnskade)</sup></td>
+          <td>+30</td>
+          <td class="num">6 355</td>
+          <td>Halvförsäkring incl. · Service incl. · AWD available</td>
+        </tr>
+        <tr class="row-bmw">
+          <td>9</td>
+          <td><span class="brand-badge brand-bmw">BMW</span></td>
+          <td>iX1 xDrive30</td>
+          <td>5</td>
+          <td><span class="tag tag-awd">AWD</span></td>
+          <td>~460 km</td>
+          <td class="num">5 195</td>
+          <td>+521 <sup>(15k km)</sup></td>
+          <td>+750</td>
+          <td>+30</td>
+          <td class="num">6 496</td>
+          <td>5yr/unlim. service · AWD · Good winter car</td>
+        </tr>
+        <tr class="row-toyota">
+          <td>10</td>
+          <td><span class="brand-badge brand-toyota">Toyota</span></td>
+          <td>C-HR+ Electric</td>
+          <td>5</td>
+          <td><span class="tag tag-fwd">FWD</span></td>
+          <td>~500 km</td>
+          <td class="num">5 795</td>
+          <td>—</td>
+          <td>+750</td>
+          <td>+30</td>
+          <td class="num">6 575</td>
+          <td>Service incl. · Roadside incl.</td>
+        </tr>
+        <tr class="row-toyota">
+          <td>11</td>
+          <td><span class="brand-badge brand-toyota">Toyota</span></td>
+          <td>bZ4X FWD</td>
+          <td>5</td>
+          <td><span class="tag tag-fwd">FWD</span></td>
+          <td>~500 km</td>
+          <td class="num">5 895</td>
+          <td>—</td>
+          <td>+750</td>
+          <td>+30</td>
+          <td class="num">6 675</td>
+          <td>Service incl. · Established EV platform</td>
+        </tr>
+        <tr class="row-mb">
+          <td>12</td>
+          <td><span class="brand-badge brand-mb">Mercedes</span></td>
+          <td>GLB Electric (7-seat)</td>
+          <td>5/7</td>
+          <td><span class="tag tag-awd">AWD opt.</span></td>
+          <td>~430 km</td>
+          <td class="num">6 295</td>
+          <td>—</td>
+          <td>+750</td>
+          <td>+30</td>
+          <td class="num">7 075</td>
+          <td>7-seat option · AWD available · 2025/2026 model</td>
+        </tr>
+        <tr class="row-toyota">
+          <td>13</td>
+          <td><span class="brand-badge brand-toyota">Toyota</span></td>
+          <td>bZ4X Touring AWD</td>
+          <td>5</td>
+          <td><span class="tag tag-awd">AWD</span></td>
+          <td>~550 km</td>
+          <td class="num">6 295</td>
+          <td>—</td>
+          <td>+750</td>
+          <td>+30</td>
+          <td class="num">7 075</td>
+          <td>AWD · Service incl. · Good winter choice</td>
+        </tr>
+        <tr class="row-bmw">
+          <td>14</td>
+          <td><span class="brand-badge brand-bmw">BMW</span></td>
+          <td>i4 eDrive40</td>
+          <td>5</td>
+          <td><span class="tag tag-fwd">RWD</span></td>
+          <td>~590 km</td>
+          <td class="num">6 090</td>
+          <td>+521 <sup>(15k km)</sup></td>
+          <td>+750</td>
+          <td>+30</td>
+          <td class="num">7 391</td>
+          <td>5yr/unlim. service · Gran Coupé · Long range</td>
+        </tr>
+        <tr class="row-polestar">
+          <td>15</td>
+          <td><span class="brand-badge brand-polestar">Polestar</span></td>
+          <td>4 Rear Motor</td>
+          <td>5</td>
+          <td><span class="tag tag-fwd">RWD</span></td>
+          <td>~620 km</td>
+          <td class="num">6 995</td>
+          <td>—</td>
+          <td>+750</td>
+          <td>+30</td>
+          <td class="num">7 775</td>
+          <td>FIXED rate · Coupé SUV · Long range</td>
+        </tr>
+        <tr class="row-polestar">
+          <td>16</td>
+          <td><span class="brand-badge brand-polestar">Polestar</span></td>
+          <td>4 Dual Motor AWD</td>
+          <td>5</td>
+          <td><span class="tag tag-awd">AWD</span></td>
+          <td>~590 km</td>
+          <td class="num">7 795 <sup>est</sup></td>
+          <td>—</td>
+          <td>+750</td>
+          <td>+30</td>
+          <td class="num">8 575 <sup>est</sup></td>
+          <td>FIXED rate · Estimate — verify with dealer</td>
+        </tr>
+        <tr class="row-tesla">
+          <td>17</td>
+          <td><span class="brand-badge brand-tesla">Tesla</span></td>
+          <td>Model 3 Long Range</td>
+          <td>5</td>
+          <td><span class="tag tag-fwd">RWD</span></td>
+          <td>~630 km</td>
+          <td class="num">7 590</td>
+          <td>+1 042 <sup>(15k km)</sup></td>
+          <td>✓ incl.</td>
+          <td>✓ incl.</td>
+          <td class="num">8 632</td>
+          <td>FSL — truly all-in incl. helförsäkring, tires, service</td>
+        </tr>
+        <tr class="row-tesla">
+          <td>18</td>
+          <td><span class="brand-badge brand-tesla">Tesla</span></td>
+          <td>Model Y Long Range AWD</td>
+          <td>5+2</td>
+          <td><span class="tag tag-awd">AWD</span></td>
+          <td>~600 km</td>
+          <td class="num">8 190</td>
+          <td>+1 042 <sup>(15k km)</sup></td>
+          <td>✓ incl.</td>
+          <td>✓ incl.</td>
+          <td class="num">9 232</td>
+          <td>FSL — 7-seat available · Best all-in value for what's covered</td>
+        </tr>
+        <tr class="row-mb">
+          <td>19</td>
+          <td><span class="brand-badge brand-mb">Mercedes</span></td>
+          <td>GLC 400 4MATIC BEV</td>
+          <td>5</td>
+          <td><span class="tag tag-awd">AWD</span></td>
+          <td>~500 km</td>
+          <td class="num">8 495</td>
+          <td>—</td>
+          <td>+750</td>
+          <td>+30</td>
+          <td class="num">9 275</td>
+          <td>Premium midsize SUV · Service add-on</td>
+        </tr>
+        <tr class="row-mb">
+          <td>20</td>
+          <td><span class="brand-badge brand-mb">Mercedes</span></td>
+          <td>EQE SUV 350 4MATIC</td>
+          <td>5</td>
+          <td><span class="tag tag-awd">AWD</span></td>
+          <td>~530 km</td>
+          <td class="num">8 795</td>
+          <td>—</td>
+          <td>+750</td>
+          <td>+30</td>
+          <td class="num">9 575</td>
+          <td>Electric-only platform · Luxury segment</td>
+        </tr>
+        <tr class="row-volvo">
+          <td>21</td>
+          <td><span class="brand-badge brand-volvo">Volvo</span></td>
+          <td>EX90 Twin Motor AWD</td>
+          <td>7</td>
+          <td><span class="tag tag-awd">AWD</span></td>
+          <td>~580 km</td>
+          <td class="num">9 995</td>
+          <td>—</td>
+          <td>+330 <sup>(vagnskade)</sup></td>
+          <td>+30</td>
+          <td class="num">10 355</td>
+          <td>7-seat · AWD · Premium · Halvförs incl.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="note">
+    † BMW base price is at 10,000 km/yr. +521 kr/mån = 5,000 km × 1.25 kr/km ÷ 12. Actual price at 15k km/yr may differ if a higher-km tier is purchased upfront.<br>
+    † Tesla FSL base is at 10,000 km/yr. +1,042 kr/mån = 5,000 km × 2.50 kr/km ÷ 12. Tesla also offers 15k/yr tier — check with Arval for exact price (may be lower than excess-based calc).<br>
+    † All-in adds ~750 kr/mån helförsäkring estimate for brands without insurance. For Volvo, +330 kr/mån vagnskadeförsäkring (collision top-up) since halvförsäkring is included.<br>
+    † Insurance estimate is approximate. Actual helförsäkring for a BEV in Sweden ranges 600–1,000+ kr/mån depending on driver profile, age, claim history, and chosen deductible.<br>
+    † Kia EV6, EV9: no listed privatleasing price from kia.com/se — must contact Kia dealer for quote.<br>
+    † Polestar 4 AWD price (~7,795 kr/mån) is an estimate — official Polestar.com only shows Rear motor (6,995 kr/mån). Verify AWD price with Polestar Sverige.
+  </div>
+</div>
+
+<!-- NOT LISTED — CONTACT DEALER -->
+<div class="section">
+  <h2 class="section-title">Models Requiring Dealer Contact for Privatleasing Price</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Brand</th>
+          <th>Model</th>
+          <th>Seats</th>
+          <th>Drive</th>
+          <th>WLTP</th>
+          <th>Why No Online Price</th>
+          <th>Service</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="row-kia">
+          <td><span class="brand-badge brand-kia">Kia</span></td>
+          <td>EV6 (FWD or AWD Long Range)</td>
+          <td>5</td>
+          <td><span class="tag tag-awd">AWD opt.</span></td>
+          <td>~582 km</td>
+          <td>"Kontakta återförsäljare" — no online privatleasing price listed</td>
+          <td><span class="tag tag-yes">✓ Incl.</span></td>
+        </tr>
+        <tr class="row-kia">
+          <td><span class="brand-badge brand-kia">Kia</span></td>
+          <td>EV9 AWD 7-sit Long Range</td>
+          <td>7</td>
+          <td><span class="tag tag-awd">AWD</span></td>
+          <td>~512 km</td>
+          <td>"Kontakta återförsäljare" — premium model, dealer-negotiated price</td>
+          <td><span class="tag tag-yes">✓ Incl.</span></td>
+        </tr>
+        <tr class="row-polestar">
+          <td><span class="brand-badge brand-polestar">Polestar</span></td>
+          <td>3 Dual Motor AWD</td>
+          <td>5</td>
+          <td><span class="tag tag-awd">AWD</span></td>
+          <td>~600 km</td>
+          <td>Price ~9,995 kr/mån (prev. research) — verify at polestar.com/se</td>
+          <td><span class="tag tag-no">✗ Not incl.</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="note">Kia EV9 7-seat AWD is the direct 7-seat AWD competitor to Tesla Model Y. Request a privatleasing quote from your nearest Kia dealer. Expect ~7,500–9,000 kr/mån base before insurance.</div>
+</div>
+
+<!-- BRAND DETAILS -->
+<div class="section">
+  <h2 class="section-title">Brand-by-Brand Details</h2>
+
+  <!-- KIA -->
+  <div class="verdict-block" style="border-left: 3px solid var(--ki-head);">
+    <div class="verdict-header">
+      <span class="brand-badge brand-kia" style="font-size:13px; padding: 4px 12px;">Kia</span>
+      <span class="verdict-stars">★★★★☆</span>
+      <span style="font-size:12px; color:var(--text-3);">Best value for money</span>
+    </div>
+    <div class="verdict-body">
+      Kia offers the most affordable BEV privatleasing in Sweden. The <strong>EV3 Long Range</strong> at ~5,537 kr/mån all-in (15,000 km/yr) is exceptional value with 605 km WLTP and AWD option (EV3 Plus/GT Line AWD). The <strong>EV4</strong> adds a larger, more refined sedan body for only ~500 kr/mån more. Kia privatleasing includes service agreement and 7-year factory warranty as standard with 0 kr down. Prices are <em>rörlig</em> (variable rate) — payment may increase if interest rates rise.
+    </div>
+    <ul class="verdict-pros">
+      <li><span>Lowest all-in cost of any brand for 5-seat BEV</span></li>
+      <li><span>EV3 has AWD option (good for Swedish winter)</span></li>
+      <li><span>Service and 7-year warranty included</span></li>
+      <li><span>Kia Privatleasingskydd (payment protection) 3 months free</span></li>
+      <li><span>Fordonsskatt for BEVs only 360 kr/yr</span></li>
+    </ul>
+    <ul class="verdict-cons">
+      <li><span>Variable rate — interest rate risk</span></li>
+      <li><span>EV6 and EV9 have no listed online price — must contact dealer</span></li>
+      <li><span>EV2 has only ~300 km WLTP — not suitable for long-distance</span></li>
+      <li><span>No insurance included — add ~750 kr/mån helförsäkring</span></li>
+    </ul>
+  </div>
+
+  <!-- VOLVO -->
+  <div class="verdict-block" style="border-left: 3px solid var(--vv-head);">
+    <div class="verdict-header">
+      <span class="brand-badge brand-volvo" style="font-size:13px; padding: 4px 12px;">Volvo</span>
+      <span class="verdict-stars">★★★★☆</span>
+      <span style="font-size:12px; color:var(--text-3);">Solid value with partial insurance</span>
+    </div>
+    <div class="verdict-body">
+      Volvo includes <strong>halvförsäkring</strong> (partial insurance) — rare among competitors — plus full service. You only need to add vagnskadeförsäkring (~330 kr/mån) for full collision coverage. The <strong>EX30</strong> is the most affordable at 5,355 kr/mån all-in (adjusted). The <strong>EX40</strong> adds AWD option. The <strong>EX90</strong> is the only 7-seat AWD option among mid-tier brands with clear privatleasing pricing.
+    </div>
+    <ul class="verdict-pros">
+      <li><span>Halvförsäkring included — insurance add-on cost is lower than other brands</span></li>
+      <li><span>Service included</span></li>
+      <li><span>EX90: only clearly priced 7-seat AWD BEV privatleasing</span></li>
+      <li><span>Swedish brand — known quality in Nordic winter</span></li>
+    </ul>
+    <ul class="verdict-cons">
+      <li><span>Halvförsäkring ≠ helförsäkring — collision damage NOT covered without vagnskadeförsäkring add-on</span></li>
+      <li><span>EX90 is expensive at ~10,355 kr/mån all-in</span></li>
+      <li><span>Variable rate</span></li>
+    </ul>
+  </div>
+
+  <!-- POLESTAR -->
+  <div class="verdict-block" style="border-left: 3px solid var(--ps-head);">
+    <div class="verdict-header">
+      <span class="brand-badge brand-polestar" style="font-size:13px; padding: 4px 12px;">Polestar</span>
+      <span class="verdict-stars">★★★☆☆</span>
+      <span style="font-size:12px; color:var(--text-3);">Fixed rate, long range, but high all-in cost</span>
+    </div>
+    <div class="verdict-body">
+      Polestar's key differentiator is <strong>fast ränta</strong> (fixed interest rate) for the full 36-month term — you're protected from rate increases. Polestar 2 at 5,495 kr/mån has an industry-leading 659 km WLTP range. However, Polestar does NOT include service or insurance, so the all-in cost climbs to ~6,275 kr/mån. Polestar 4 is a stylish coupé-SUV but expensive before add-ons.
+    </div>
+    <ul class="verdict-pros">
+      <li><span>Fixed rate — budget certainty for full 36 months</span></li>
+      <li><span>P2 has exceptional 659 km WLTP — less range anxiety</span></li>
+      <li><span>3yr free roadside assistance included</span></li>
+      <li><span>Polestar 4 AWD available (est. ~8,575 kr/mån all-in)</span></li>
+    </ul>
+    <ul class="verdict-cons">
+      <li><span>Service NOT included — extra maintenance costs</span></li>
+      <li><span>Insurance NOT included — add ~750 kr/mån</span></li>
+      <li><span>Polestar 4 AWD price unconfirmed — must verify at polestar.com/se</span></li>
+    </ul>
+  </div>
+
+  <!-- BMW -->
+  <div class="verdict-block" style="border-left: 3px solid var(--bw-head);">
+    <div class="verdict-header">
+      <span class="brand-badge brand-bmw" style="font-size:13px; padding: 4px 12px;">BMW</span>
+      <span class="verdict-stars">★★★★☆</span>
+      <span style="font-size:12px; color:var(--text-3);">Best service coverage, AWD iX1 underrated</span>
+    </div>
+    <div class="verdict-body">
+      BMW's standout feature is the <strong>5-year/unlimited km Servicepaket</strong> included on all fully electric models — significantly better than most brands. The <strong>iX1 xDrive30</strong> (AWD) at ~6,496 kr/mån all-in is one of the better winter-ready packages. Base price is at 10,000 km/yr — at 15,000 km/yr, add 521 kr/mån (5,000 km × 1.25 kr/km ÷ 12). BMW fordonsskatt is NOT included.
+    </div>
+    <ul class="verdict-pros">
+      <li><span>5yr/unlimited km service included — exceptional coverage</span></li>
+      <li><span>iX1 xDrive30 AWD available — great winter car</span></li>
+      <li><span>Premium brand with established dealer network in Sweden</span></li>
+      <li><span>Excess km rate 1.25 kr/km — lower than Tesla (2.50 kr/km)</span></li>
+    </ul>
+    <ul class="verdict-cons">
+      <li><span>Standard km/yr is 10,000 — 15,000 km/yr adds ~521 kr/mån</span></li>
+      <li><span>Insurance NOT included — add ~750 kr/mån</span></li>
+      <li><span>Fordonsskatt extra (30 kr/mån)</span></li>
+      <li><span>Variable rate</span></li>
+    </ul>
+  </div>
+
+  <!-- TOYOTA -->
+  <div class="verdict-block" style="border-left: 3px solid var(--to-head);">
+    <div class="verdict-header">
+      <span class="brand-badge brand-toyota" style="font-size:13px; padding: 4px 12px;">Toyota</span>
+      <span class="verdict-stars">★★★☆☆</span>
+      <span style="font-size:12px; color:var(--text-3);">Reliable but limited BEV lineup</span>
+    </div>
+    <div class="verdict-body">
+      Toyota's <strong>Easy Privatleasing</strong> includes service and roadside assistance at 15,000 km/yr. The <strong>bZ4X Touring AWD</strong> is a good winter option. The <strong>C-HR+ Electric</strong> is Toyota's compact BEV with ~500 km WLTP. However, Toyota's BEV lineup in Sweden is limited vs. Kia or Volvo, and the all-in cost (6,575–7,075 kr/mån) is not particularly competitive vs. equivalent Kia/BMW options.
+    </div>
+    <ul class="verdict-pros">
+      <li><span>Service included in Easy Privatleasing</span></li>
+      <li><span>bZ4X Touring AWD for winter driving</span></li>
+      <li><span>0 kr kontantinsats</span></li>
+      <li><span>Toyota reliability reputation</span></li>
+    </ul>
+    <ul class="verdict-cons">
+      <li><span>Insurance NOT included</span></li>
+      <li><span>Limited BEV lineup compared to competitors</span></li>
+      <li><span>All-in cost not competitive vs. Kia at same km/yr</span></li>
+      <li><span>Variable rate</span></li>
+    </ul>
+  </div>
+
+  <!-- MERCEDES -->
+  <div class="verdict-block" style="border-left: 3px solid var(--mb-head);">
+    <div class="verdict-header">
+      <span class="brand-badge brand-mb" style="font-size:13px; padding: 4px 12px;">Mercedes-Benz</span>
+      <span class="verdict-stars">★★★☆☆</span>
+      <span style="font-size:12px; color:var(--text-3);">Widest range, CLA exceptional value, GLB for 7-seats</span>
+    </div>
+    <div class="verdict-body">
+      Mercedes offers the widest BEV model range for privatleasing. The <strong>CLA 250+</strong> has the longest WLTP of any model in this comparison (~750 km) at an attractive base price. The new <strong>GLB Electric</strong> is the only affordable 7-seat AWD BEV privatleasing with a listed price (~7,075 kr/mån all-in). Nothing is included in Mercedes leasing — service, insurance, and fordonsskatt are all extra.
+    </div>
+    <ul class="verdict-pros">
+      <li><span>CLA: best WLTP range in comparison (~750 km)</span></li>
+      <li><span>GLB Electric: 7-seat AWD with competitive all-in price</span></li>
+      <li><span>Widest BEV privatleasing range of any brand here</span></li>
+      <li><span>CLA campaign: 4,995 kr/mån in year 1</span></li>
+    </ul>
+    <ul class="verdict-cons">
+      <li><span>Nothing included — add insurance, service, fordonsskatt all separately</span></li>
+      <li><span>CLA campaign rate: 4,995 yr1 then ~6,495 yr2-3 — higher average than advertised</span></li>
+      <li><span>Variable rate</span></li>
+      <li><span>GLB Electric range modest (~430 km WLTP) for AWD variant</span></li>
+    </ul>
+  </div>
+
+  <!-- TESLA -->
+  <div class="verdict-block" style="border-left: 3px solid var(--my-head);">
+    <div class="verdict-header">
+      <span class="brand-badge brand-tesla" style="font-size:13px; padding: 4px 12px;">Tesla (FSL)</span>
+      <span class="verdict-stars">★★★★★</span>
+      <span style="font-size:12px; color:var(--text-3);">Most complete package; higher cost</span>
+    </div>
+    <div class="verdict-body">
+      Tesla's <strong>Full Service Leasing (FSL)</strong> via Arval is the only product in this comparison that truly includes <em>everything</em>: helförsäkring, all scheduled service, tire changes (summer/winter) + storage, fordonsskatt, and roadside assistance. Base pricing is at 10,000 km/yr — at 15,000 km/yr, add 1,042 kr/mån in excess km charges (2.50 kr/km × 5,000 km ÷ 12). The all-in cost of 8,632–9,232 kr/mån appears high, but when you add helförsäkring + service + tire service to competitors, the gap narrows meaningfully.
+    </div>
+    <ul class="verdict-pros">
+      <li><span>Truly all-inclusive: helförsäkring, service, tires, fskatt — nothing extra</span></li>
+      <li><span>Fixed rate — no interest rate risk for 36 months</span></li>
+      <li><span>Model Y: 7-seat AWD with 600 km WLTP</span></li>
+      <li><span>Best-in-class OTA software updates</span></li>
+      <li><span>Supercharger network access</span></li>
+    </ul>
+    <ul class="verdict-cons">
+      <li><span>Highest all-in cost in this comparison (rows 17–18)</span></li>
+      <li><span>10,000 km/yr base — 15k km adds 1,042 kr/mån (2.50 kr/km excess)</span></li>
+      <li><span>FSL via Arval — not sold directly at Tesla stores</span></li>
+      <li><span>Tesla Model Y now in top 20 vs. being clear winner at 10,000 km/yr</span></li>
+    </ul>
+  </div>
+</div>
+
+<!-- WINTER SUITABILITY -->
+<div class="section">
+  <h2 class="section-title">Winter / Snow Suitability (Sweden)</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Model</th>
+          <th>AWD</th>
+          <th>Heat Pump</th>
+          <th>800V Fast Charge</th>
+          <th>Winter Verdict</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="row-tesla">
+          <td><span class="brand-badge brand-tesla">Tesla</span> Model Y LR AWD</td>
+          <td><span class="tag tag-awd">✓ AWD</span></td>
+          <td><span class="tag tag-yes">✓</span></td>
+          <td><span class="tag tag-no">✗ 400V</span></td>
+          <td>Excellent — AWD + heat pump + Supercharger network</td>
+        </tr>
+        <tr class="row-kia">
+          <td><span class="brand-badge brand-kia">Kia</span> EV3/EV9 AWD</td>
+          <td><span class="tag tag-awd">✓ AWD</span></td>
+          <td><span class="tag tag-yes">✓</span></td>
+          <td><span class="tag tag-yes">✓ 800V</span></td>
+          <td>Excellent — 800V fast charging, AWD, heat pump standard</td>
+        </tr>
+        <tr class="row-volvo">
+          <td><span class="brand-badge brand-volvo">Volvo</span> EX40/EX90 AWD</td>
+          <td><span class="tag tag-awd">✓ AWD</span></td>
+          <td><span class="tag tag-yes">✓</span></td>
+          <td><span class="tag tag-no">✗ 400V</span></td>
+          <td>Very good — Swedish-engineered for Nordic climate</td>
+        </tr>
+        <tr class="row-bmw">
+          <td><span class="brand-badge brand-bmw">BMW</span> iX1 xDrive30 AWD</td>
+          <td><span class="tag tag-awd">✓ AWD</span></td>
+          <td><span class="tag tag-yes">✓</span></td>
+          <td><span class="tag tag-no">✗ 400V</span></td>
+          <td>Very good — proven xDrive AWD in winter</td>
+        </tr>
+        <tr class="row-toyota">
+          <td><span class="brand-badge brand-toyota">Toyota</span> bZ4X Touring AWD</td>
+          <td><span class="tag tag-awd">✓ AWD</span></td>
+          <td><span class="tag tag-yes">✓</span></td>
+          <td><span class="tag tag-no">✗ 400V</span></td>
+          <td>Good — AWD, heat pump; charge speed adequate</td>
+        </tr>
+        <tr class="row-mb">
+          <td><span class="brand-badge brand-mb">Mercedes</span> GLB/EQE/GLC AWD</td>
+          <td><span class="tag tag-awd">✓ AWD</span></td>
+          <td><span class="tag tag-yes">✓</span></td>
+          <td><span class="tag tag-no">✗ 400V</span></td>
+          <td>Good — 4MATIC AWD, winter mode; GLB shortest range</td>
+        </tr>
+        <tr class="row-polestar">
+          <td><span class="brand-badge brand-polestar">Polestar</span> 4 AWD</td>
+          <td><span class="tag tag-awd">✓ AWD</span></td>
+          <td><span class="tag tag-yes">✓</span></td>
+          <td><span class="tag tag-no">✗ 400V</span></td>
+          <td>Good — long range helps offset cold-weather range loss</td>
+        </tr>
+        <tr class="row-kia">
+          <td><span class="brand-badge brand-kia">Kia</span> EV2/EV4 FWD</td>
+          <td><span class="tag tag-fwd">✗ FWD only</span></td>
+          <td><span class="tag tag-yes">✓</span></td>
+          <td><span class="tag tag-yes">✓ 800V</span></td>
+          <td>Adequate — FWD with good tires manages; not ideal for rural snow</td>
+        </tr>
+        <tr class="row-tesla">
+          <td><span class="brand-badge brand-tesla">Tesla</span> Model 3 RWD</td>
+          <td><span class="tag tag-fwd">✗ RWD</span></td>
+          <td><span class="tag tag-yes">✓</span></td>
+          <td><span class="tag tag-no">✗ 400V</span></td>
+          <td>Adequate in city; AWD variant strongly recommended for Swedish winters</td>
+        </tr>
+        <tr class="row-volvo">
+          <td><span class="brand-badge brand-volvo">Volvo</span> EX30 FWD</td>
+          <td><span class="tag tag-fwd">✗ FWD</span></td>
+          <td><span class="tag tag-yes">✓</span></td>
+          <td><span class="tag tag-no">✗ 400V</span></td>
+          <td>Adequate — FWD, short range, but Swedish-tuned chassis</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="note">For Gothenburg and surroundings: FWD with proper winter tires (studded or friction) is adequate for most city and highway use. AWD strongly recommended if driving rural roads in snow regularly. 800V charging (Kia EV3/EV6/EV9) means faster DC top-ups on long trips — less waiting in cold weather.</div>
+</div>
+
+<!-- 7-SEAT COMPARISON -->
+<div class="section">
+  <h2 class="section-title">7-Seat BEV Options for Privatleasing</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Brand</th>
+          <th>Model</th>
+          <th>AWD</th>
+          <th>WLTP</th>
+          <th>Base /mån</th>
+          <th>All-In /mån</th>
+          <th>Price Available Online?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="row-mb">
+          <td><span class="brand-badge brand-mb">Mercedes</span></td>
+          <td>GLB Electric 250 (4MATIC)</td>
+          <td><span class="tag tag-awd">AWD opt.</span></td>
+          <td>~430 km</td>
+          <td class="num">6 295</td>
+          <td class="num">7 075</td>
+          <td><span class="tag tag-yes">✓ Listed online</span></td>
+        </tr>
+        <tr class="row-tesla">
+          <td><span class="brand-badge brand-tesla">Tesla</span></td>
+          <td>Model Y LR AWD (7-seat)</td>
+          <td><span class="tag tag-awd">AWD</span></td>
+          <td>~600 km</td>
+          <td class="num">8 190 (+1 042)</td>
+          <td class="num">9 232</td>
+          <td><span class="tag tag-yes">✓ Arval FSL</span></td>
+        </tr>
+        <tr class="row-volvo">
+          <td><span class="brand-badge brand-volvo">Volvo</span></td>
+          <td>EX90 Twin Motor AWD</td>
+          <td><span class="tag tag-awd">AWD</span></td>
+          <td>~580 km</td>
+          <td class="num">9 995</td>
+          <td class="num">10 355</td>
+          <td><span class="tag tag-yes">✓ Listed online</span></td>
+        </tr>
+        <tr class="row-kia">
+          <td><span class="brand-badge brand-kia">Kia</span></td>
+          <td>EV9 AWD Long Range (7-seat)</td>
+          <td><span class="tag tag-awd">AWD</span></td>
+          <td>~512 km</td>
+          <td class="tag tag-na">Dealer quote</td>
+          <td class="tag tag-na">~8–10k est.</td>
+          <td><span class="tag tag-no">✗ Contact Kia dealer</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="note">The Mercedes GLB Electric is the most affordable listed 7-seat BEV privatleasing option, though its ~430 km AWD range is the shortest of the group. Tesla Model Y remains the best balance of range, AWD, and truly all-inclusive pricing. Kia EV9 is the unknown — may undercut Tesla Y on base price but requires dealer visit for quote.</div>
+</div>
+
+<!-- FOOTNOTES -->
+<div class="section">
+  <h2 class="section-title">Sources &amp; Methodology Notes</h2>
+  <div class="note" style="font-size:12px; line-height:1.7;">
+    <strong>All prices verified from official brand websites (Sweden), July 2026:</strong><br>
+    • <strong>Tesla FSL</strong>: Arval Sweden / tesla.com — 36m, 10,000 km/yr base; excess km 2.50 kr/km; includes helförsäkring, full service, tire changes &amp; storage, fordonsskatt, roadside<br>
+    • <strong>Volvo</strong>: volvocars.com/se — 36m, 15,000 km/yr; halvförsäkring included; full service included; fordonsskatt extra (30 kr/mån)<br>
+    • <strong>Mercedes-Benz</strong>: mercedes-benz.se + dealer verification (Bilia, Veho Bil, Landrins Bil) — 36m, 15,000 km/yr; nothing included beyond lease; CLA campaign: 4,995 kr yr1 then ~6,495 kr yr2-3<br>
+    • <strong>Toyota</strong>: toyota.se — Easy Privatleasing, 36m, 1,500 mil/yr (15,000 km); service + roadside included; insurance and fordonsskatt extra<br>
+    • <strong>BMW</strong>: bmw.se — 36m, 10,000 km/yr base; excess km 1.25 kr/km; 5yr/unlimited km service included; insurance and fordonsskatt extra; prices adjusted to 15,000 km/yr<br>
+    • <strong>Polestar</strong>: polestar.com/se — Business Edition privatleasing, 36m, 1,500 mil/yr; fixed rate; 3yr roadside included; P4 AWD price is unverified estimate<br>
+    • <strong>Kia</strong>: kia.com/se/kopa/privatleasing — 36m, 1,500 mil/yr (verified via km selector); service + 7yr warranty + roadside included; variable rate; EV6 and EV9 show "kontakta återförsäljare"<br><br>
+    <strong>Fordonsskatt</strong>: 360 kr/yr = 30 kr/mån for all BEVs (confirmed on kia.com/se for EV2, EV3, EV4, EV5 — applies to all Swedish BEVs).<br>
+    <strong>Insurance estimate</strong>: ~750 kr/mån for helförsäkring (market average for BEV; actual varies by insurer, age, NCB). Volvo adds only 330 kr/mån vagnskadeförsäkring since halvförsäkring is included.<br>
+    <strong>Excess km calculation</strong>: Tesla 2.50 kr/km; BMW 1.25 kr/km; both × 5,000 km ÷ 12 months = 1,042 and 521 kr/mån respectively.
+  </div>
+</div>
+
+</div>
+</body>
+</html>

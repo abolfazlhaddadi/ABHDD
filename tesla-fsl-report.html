@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tesla Model Y — Lease Cost Report</title>
+<style>
+  :root {
+    --bg: #F4F6FA;
+    --surface: #FFFFFF;
+    --surface-2: #EEF1F7;
+    --border: #D8DEE9;
+    --text: #0F1520;
+    --text-2: #4A5568;
+    --text-3: #718096;
+    --accent: #1A5FAD;
+    --accent-light: #EAF1FB;
+    --positive: #15803D;
+    --positive-bg: #F0FDF4;
+    --warning: #B45309;
+    --warning-bg: #FFFBEB;
+    --risk: #B91C1C;
+    --risk-bg: #FEF2F2;
+    --bar-fsl: #1A5FAD;
+    --bar-park: #5B8ED4;
+    --bar-elec: #A0BDE8;
+    --bar-up: #D0DDEF;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0F1520;
+      --surface: #18202E;
+      --surface-2: #1E2840;
+      --border: #2A3550;
+      --text: #EEF1F7;
+      --text-2: #A0AABE;
+      --text-3: #6B7A94;
+      --accent: #4A8FD4;
+      --accent-light: #1A2D4A;
+      --positive: #22C55E;
+      --positive-bg: #052E16;
+      --warning: #F59E0B;
+      --warning-bg: #1C1400;
+      --risk: #F87171;
+      --risk-bg: #1C0505;
+      --bar-fsl: #3A7FCC;
+      --bar-park: #5B8ED4;
+      --bar-elec: #2D5A8A;
+      --bar-up: #1E3455;
+    }
+  }
+
+  :root[data-theme="light"] {
+    --bg: #F4F6FA;
+    --surface: #FFFFFF;
+    --surface-2: #EEF1F7;
+    --border: #D8DEE9;
+    --text: #0F1520;
+    --text-2: #4A5568;
+    --text-3: #718096;
+    --accent: #1A5FAD;
+    --accent-light: #EAF1FB;
+    --positive: #15803D;
+    --positive-bg: #F0FDF4;
+    --warning: #B45309;
+    --warning-bg: #FFFBEB;
+    --risk: #B91C1C;
+    --risk-bg: #FEF2F2;
+    --bar-fsl: #1A5FAD;
+    --bar-park: #5B8ED4;
+    --bar-elec: #A0BDE8;
+    --bar-up: #D0DDEF;
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #0F1520;
+    --surface: #18202E;
+    --surface-2: #1E2840;
+    --border: #2A3550;
+    --text: #EEF1F7;
+    --text-2: #A0AABE;
+    --text-3: #6B7A94;
+    --accent: #4A8FD4;
+    --accent-light: #1A2D4A;
+    --positive: #22C55E;
+    --positive-bg: #052E16;
+    --warning: #F59E0B;
+    --warning-bg: #1C1400;
+    --risk: #F87171;
+    --risk-bg: #1C0505;
+    --bar-fsl: #3A7FCC;
+    --bar-park: #5B8ED4;
+    --bar-elec: #2D5A8A;
+    --bar-up: #1E3455;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    padding: 32px 20px 64px;
+  }
+
+  .wrap {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  /* ── Header ── */
+  .doc-header {
+    margin-bottom: 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .doc-header-left {}
+
+  .eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    margin-bottom: 6px;
+  }
+
+  .doc-title {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 26px;
+    font-weight: normal;
+    color: var(--text);
+    text-wrap: balance;
+    line-height: 1.25;
+  }
+
+  .doc-subtitle {
+    font-size: 13px;
+    color: var(--text-3);
+    margin-top: 4px;
+  }
+
+  .doc-date {
+    font-size: 12px;
+    color: var(--text-3);
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  /* ── Summary banner ── */
+  .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 8px;
+  }
+
+  .summary-cell {
+    background: var(--surface);
+    padding: 22px 20px;
+  }
+
+  .summary-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    margin-bottom: 6px;
+  }
+
+  .summary-value {
+    font-family: "Courier New", Courier, monospace;
+    font-variant-numeric: tabular-nums;
+    font-size: 26px;
+    color: var(--text);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .summary-value.accent { color: var(--accent); }
+
+  .summary-sub {
+    font-size: 11px;
+    color: var(--text-3);
+    margin-top: 5px;
+  }
+
+  /* ── Stacked bar ── */
+  .cost-bar-wrap {
+    background: var(--surface);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 24px;
+  }
+
+  .cost-bar-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    margin-bottom: 12px;
+  }
+
+  .cost-bar {
+    display: flex;
+    height: 10px;
+    border-radius: 5px;
+    overflow: hidden;
+    gap: 2px;
+    margin-bottom: 14px;
+  }
+
+  .cost-bar-seg { height: 100%; border-radius: 2px; }
+  .seg-fsl  { background: var(--bar-fsl);  flex: 328896; }
+  .seg-park { background: var(--bar-park); flex: 57600; }
+  .seg-elec { background: var(--bar-elec); flex: 48000; }
+  .seg-up   { background: var(--bar-up);   flex: 30000; }
+
+  .bar-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 12px;
+    color: var(--text-2);
+  }
+
+  .legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  .dot-fsl  { background: var(--bar-fsl); }
+  .dot-park { background: var(--bar-park); }
+  .dot-elec { background: var(--bar-elec); }
+  .dot-up   { background: var(--bar-up); }
+
+  /* ── Section ── */
+  .section { margin-bottom: 24px; }
+
+  .section-title {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 16px;
+    font-weight: normal;
+    color: var(--text);
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* ── Table ── */
+  .cost-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+
+  .cost-table th {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    text-align: left;
+    padding: 8px 12px;
+    background: var(--surface-2);
+  }
+
+  .cost-table th:last-child { text-align: right; }
+
+  .cost-table td {
+    padding: 11px 12px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-2);
+    vertical-align: top;
+  }
+
+  .cost-table td:first-child { color: var(--text); font-weight: 500; }
+  .cost-table td:last-child {
+    text-align: right;
+    font-family: "Courier New", Courier, monospace;
+    font-variant-numeric: tabular-nums;
+    color: var(--text);
+    white-space: nowrap;
+  }
+
+  .cost-table tr:last-child td { border-bottom: none; }
+
+  .cost-table .total-row td {
+    font-weight: 700;
+    color: var(--text);
+    background: var(--accent-light);
+    border-top: 2px solid var(--accent);
+    border-bottom: none;
+  }
+
+  .cost-table .total-row td:last-child {
+    color: var(--accent);
+  }
+
+  .table-wrap {
+    background: var(--surface);
+    border-radius: 12px;
+    overflow: hidden;
+    overflow-x: auto;
+  }
+
+  /* ── Note tag ── */
+  .note {
+    font-size: 12px;
+    color: var(--text-3);
+    margin-top: 8px;
+    padding-left: 4px;
+  }
+
+  /* ── Tag pills ── */
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 99px;
+    letter-spacing: 0.04em;
+  }
+  .tag-included { background: var(--positive-bg); color: var(--positive); }
+  .tag-estimate { background: var(--warning-bg); color: var(--warning); }
+
+  /* ── Included items ── */
+  .included-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .included-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 12px 14px;
+    background: var(--surface);
+    border-radius: 10px;
+    font-size: 13px;
+  }
+
+  .included-icon {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--positive-bg);
+    color: var(--positive);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .included-name { font-weight: 600; color: var(--text); }
+  .included-desc { font-size: 12px; color: var(--text-3); margin-top: 2px; }
+
+  /* ── Risk items ── */
+  .risk-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .risk-item {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 12px;
+    align-items: start;
+    padding: 14px 16px;
+    background: var(--surface);
+    border-radius: 10px;
+    border-left: 3px solid transparent;
+    font-size: 13px;
+  }
+
+  .risk-item.low  { border-color: var(--positive); }
+  .risk-item.mid  { border-color: var(--warning); }
+  .risk-item.high { border-color: var(--risk); }
+
+  .risk-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-top: 5px;
+    flex-shrink: 0;
+  }
+  .low  .risk-dot { background: var(--positive); }
+  .mid  .risk-dot { background: var(--warning); }
+  .high .risk-dot { background: var(--risk); }
+
+  .risk-body {}
+  .risk-name { font-weight: 600; color: var(--text); }
+  .risk-desc { color: var(--text-3); margin-top: 2px; line-height: 1.5; }
+  .risk-cost {
+    font-family: "Courier New", Courier, monospace;
+    font-variant-numeric: tabular-nums;
+    font-size: 13px;
+    color: var(--text-2);
+    white-space: nowrap;
+    text-align: right;
+  }
+
+  /* ── Mileage ── */
+  .mileage-bar-wrap {
+    background: var(--surface);
+    border-radius: 12px;
+    padding: 18px 20px;
+  }
+
+  .mileage-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 13px;
+  }
+
+  .mileage-label { font-weight: 600; color: var(--text); }
+  .mileage-status {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--positive);
+    background: var(--positive-bg);
+    padding: 3px 10px;
+    border-radius: 99px;
+  }
+
+  .mileage-track {
+    height: 8px;
+    background: var(--surface-2);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+
+  .mileage-fill {
+    height: 100%;
+    width: 80%; /* 12000/15000 */
+    background: var(--accent);
+    border-radius: 4px;
+  }
+
+  .mileage-nums {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--text-3);
+    font-variant-numeric: tabular-nums;
+    font-family: "Courier New", Courier, monospace;
+  }
+
+  /* ── Term comparison ── */
+  .compare-table th.col-alt {
+    background: var(--accent-light);
+    color: var(--accent);
+  }
+  .compare-table td.col-alt {
+    font-family: "Courier New", Courier, monospace;
+    font-variant-numeric: tabular-nums;
+    text-align: right;
+    background: var(--accent-light);
+    color: var(--text);
+    white-space: nowrap;
+  }
+  .compare-table .total-row td.col-alt {
+    color: var(--accent);
+    font-weight: 700;
+  }
+  .term-notes {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+  }
+  .term-note-card {
+    flex: 1;
+    min-width: 180px;
+    font-size: 12px;
+    color: var(--text-3);
+    padding: 10px 14px;
+    background: var(--surface);
+    border-radius: 8px;
+    border-left: 3px solid var(--border);
+  }
+  .term-note-card.highlighted { border-color: var(--accent); }
+  .term-note-card strong { display: block; font-size: 12px; color: var(--text-2); margin-bottom: 4px; }
+
+  /* ── Footer ── */
+  .doc-footer {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    font-size: 11px;
+    color: var(--text-3);
+    line-height: 1.7;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 560px) {
+    .summary-grid { grid-template-columns: 1fr 1fr; }
+    .summary-cell:last-child { grid-column: 1 / -1; }
+    .included-grid { grid-template-columns: 1fr; }
+    .risk-item { grid-template-columns: auto 1fr; }
+    .risk-cost { grid-column: 2; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- Header -->
+  <header class="doc-header">
+    <div class="doc-header-left">
+      <p class="eyebrow">Lease Cost Report · Private Full Service Lease</p>
+      <h1 class="doc-title">Tesla Model Y Premium Long Range AWD</h1>
+      <p class="doc-subtitle">7 seats &nbsp;·&nbsp; Personal Full Service Lease via Arval &nbsp;·&nbsp; Gothenburg, Sweden</p>
+    </div>
+    <div class="doc-date">
+      36 or 48 months &nbsp;·&nbsp; 15 000 km/yr<br>
+      July 2026
+    </div>
+  </header>
+
+  <!-- Summary metrics -->
+  <div class="summary-grid">
+    <div class="summary-cell">
+      <div class="summary-label">FSL Monthly Payment</div>
+      <div class="summary-value accent">6 852</div>
+      <div class="summary-sub">SEK / month · estimated</div>
+    </div>
+    <div class="summary-cell">
+      <div class="summary-label">Total Monthly Outgoing</div>
+      <div class="summary-value">9 052</div>
+      <div class="summary-sub">SEK / month incl. parking &amp; charging</div>
+    </div>
+    <div class="summary-cell">
+      <div class="summary-label">4-Year Total Cost</div>
+      <div class="summary-value">464 500</div>
+      <div class="summary-sub">SEK incl. down payment</div>
+    </div>
+  </div>
+
+  <!-- Cost breakdown bar -->
+  <div class="cost-bar-wrap">
+    <div class="cost-bar-label">Cost breakdown — 48 months</div>
+    <div class="cost-bar">
+      <div class="cost-bar-seg seg-fsl"></div>
+      <div class="cost-bar-seg seg-park"></div>
+      <div class="cost-bar-seg seg-elec"></div>
+      <div class="cost-bar-seg seg-up"></div>
+    </div>
+    <div class="bar-legend">
+      <div class="legend-item"><span class="legend-dot dot-fsl"></span>FSL payments 329 000 SEK</div>
+      <div class="legend-item"><span class="legend-dot dot-park"></span>Parking 57 600 SEK</div>
+      <div class="legend-item"><span class="legend-dot dot-elec"></span>Charging 48 000 SEK</div>
+      <div class="legend-item"><span class="legend-dot dot-up"></span>Down payment 30 000 SEK</div>
+    </div>
+  </div>
+
+  <!-- Monthly costs -->
+  <div class="section">
+    <h2 class="section-title">Monthly costs</h2>
+    <div class="table-wrap">
+      <table class="cost-table">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Notes</th>
+            <th>SEK / month</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>FSL payment <span class="tag tag-included">Included</span></td>
+            <td>Covers service, tyres, insurance, vehicle tax, roadside assistance</td>
+            <td>6 852</td>
+          </tr>
+          <tr>
+            <td>Parking</td>
+            <td>Fixed monthly, Gothenburg</td>
+            <td>1 200</td>
+          </tr>
+          <tr>
+            <td>Charging <span class="tag tag-estimate">Estimate</span></td>
+            <td>1 000 km/month · ~5 km/kWh · ~5 SEK/kWh public charging</td>
+            <td>~1 000</td>
+          </tr>
+          <tr class="total-row">
+            <td>Total per month</td>
+            <td></td>
+            <td>≈ 9 052</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Charging cost can drop to ~350 SEK/month with home charging via Wall Connector (1.5–2 SEK/kWh).</p>
+  </div>
+
+  <!-- One-time costs -->
+  <div class="section">
+    <h2 class="section-title">One-time costs</h2>
+    <div class="table-wrap">
+      <table class="cost-table">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Notes</th>
+            <th>SEK</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Down payment (kontantinsats)</td>
+            <td>Paid at order</td>
+            <td>30 000</td>
+          </tr>
+          <tr>
+            <td>Order deposit</td>
+            <td>Refunded at delivery via Arval FSL</td>
+            <td>2 500 →&nbsp;0</td>
+          </tr>
+          <tr>
+            <td>All-weather floor mats <span class="tag tag-estimate">Recommended</span></td>
+            <td>Strongly recommended with 7 seats and children</td>
+            <td>2 730</td>
+          </tr>
+          <tr class="total-row">
+            <td>Net due at delivery</td>
+            <td></td>
+            <td>≈ 32 730</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Mileage -->
+  <div class="section">
+    <h2 class="section-title">Mileage</h2>
+    <div class="mileage-bar-wrap">
+      <div class="mileage-top">
+        <span class="mileage-label">Actual usage vs. contracted limit</span>
+        <span class="mileage-status">✓ 3 000 km/yr buffer</span>
+      </div>
+      <div class="mileage-track">
+        <div class="mileage-fill"></div>
+      </div>
+      <div class="mileage-nums">
+        <span>0 km</span>
+        <span>Your usage: 12 000 km/yr</span>
+        <span>Limit: 15 000 km/yr</span>
+      </div>
+    </div>
+    <p class="note">You are 3 000 km/year under the contracted limit — a total buffer of 12 000 km over 4 years. No excess mileage risk.</p>
+  </div>
+
+  <!-- Included in FSL -->
+  <div class="section">
+    <h2 class="section-title">What's included in the FSL payment</h2>
+    <div class="included-grid">
+      <div class="included-item">
+        <div class="included-icon">✓</div>
+        <div>
+          <div class="included-name">Service &amp; maintenance</div>
+          <div class="included-desc">All scheduled service intervals at no extra cost</div>
+        </div>
+      </div>
+      <div class="included-item">
+        <div class="included-icon">✓</div>
+        <div>
+          <div class="included-name">Full comprehensive insurance</div>
+          <div class="included-desc">Via Greenval Insurance (BNP Paribas). Covers collision, fire, theft, glass</div>
+        </div>
+      </div>
+      <div class="included-item">
+        <div class="included-icon">✓</div>
+        <div>
+          <div class="included-name">Tyres (replacement)</div>
+          <div class="included-desc">Replacement tyres when worn are included. Seasonal swap labour (summer ↔ winter mounting) — must confirm with Arval</div>
+        </div>
+      </div>
+      <div class="included-item">
+        <div class="included-icon">✓</div>
+        <div>
+          <div class="included-name">Roadside assistance</div>
+          <div class="included-desc">Up to 20 000 SEK coverage. Replacement car at 75% of cost for up to 45 days</div>
+        </div>
+      </div>
+      <div class="included-item">
+        <div class="included-icon">✓</div>
+        <div>
+          <div class="included-name">Vehicle tax</div>
+          <div class="included-desc">Paid by Arval — you never see this charge</div>
+        </div>
+      </div>
+      <div class="included-item">
+        <div class="included-icon">✓</div>
+        <div>
+          <div class="included-name">Tow hitch</div>
+          <div class="included-desc">1 600 kg capacity — included in standard spec</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Risk & watch out -->
+  <div class="section">
+    <h2 class="section-title">Conditional costs — watch out for these</h2>
+    <div class="risk-list">
+      <div class="risk-item mid">
+        <div class="risk-dot"></div>
+        <div class="risk-body">
+          <div class="risk-name">Insurance deductible (självrisken)</div>
+          <div class="risk-desc">4 000 SEK per incident for collision or wrong fuel. Glass: 2 000 SEK replacement / 100 SEK repair. <strong>Pay out of pocket</strong> if the damage costs less than 4 000 SEK — filing a claim is not worth it below that threshold.</div>
+        </div>
+        <div class="risk-cost">4 000 SEK<br>per incident</div>
+      </div>
+      <div class="risk-item high">
+        <div class="risk-dot"></div>
+        <div class="risk-body">
+          <div class="risk-name">Missed vehicle inspection (kontrollbesiktning)</div>
+          <div class="risk-desc">Kontrollbesiktning is a <strong>Swedish government-mandated</strong> roadworthiness test — completely separate from Tesla's service schedule. The car must be inspected when it turns 3 years old. For a 48-month lease this falls around month 33–36; for a 36-month lease it falls right at contract end. Arval manages the booking, but charges 2 188 SEK if it is missed or you fail to cooperate with scheduling.</div>
+        </div>
+        <div class="risk-cost">2 188 SEK<br>if missed</div>
+      </div>
+      <div class="risk-item mid">
+        <div class="risk-dot"></div>
+        <div class="risk-body">
+          <div class="risk-name">Interior condition at return</div>
+          <div class="risk-desc">With 7 seats and children, the interior takes wear. Reconditioning (smoke, pet smell, heavy soiling) is charged hourly. Normal wear and tear is accepted at no cost.</div>
+        </div>
+        <div class="risk-cost">1 350 SEK/hr<br>reconditioning</div>
+      </div>
+      <div class="risk-item mid">
+        <div class="risk-dot"></div>
+        <div class="risk-body">
+          <div class="risk-name">Missing equipment at return</div>
+          <div class="risk-desc">Keys, tyres, and any added accessories (e.g. roof rack) must be returned. Missing items are charged at actual replacement cost. Document everything at delivery.</div>
+        </div>
+        <div class="risk-cost">Actual cost</div>
+      </div>
+      <div class="risk-item low">
+        <div class="risk-dot"></div>
+        <div class="risk-body">
+          <div class="risk-name">Excess mileage</div>
+          <div class="risk-desc">You drive 12 000 km/year against the contracted 15 000 — a total buffer of 12 000 km over 4 years. No risk unless your habits change significantly.</div>
+        </div>
+        <div class="risk-cost">~3 SEK/km<br>if exceeded</div>
+      </div>
+      <div class="risk-item low">
+        <div class="risk-dot"></div>
+        <div class="risk-body">
+          <div class="risk-name">Tesla scheduled service — what's covered</div>
+          <div class="risk-desc">Regular Tesla service items (cabin air filter every 2 yrs, brake fluid check every 2 yrs, tyre rotation every 10 000 km) are <strong>fully covered</strong> in the FSL at no charge. The 375 SEK fee only applies if Arval has to handle a service item <em>outside</em> of a scheduled service visit — e.g. an unplanned fluid refill. This is rare and not a routine cost to budget for.</div>
+        </div>
+        <div class="risk-cost">375 SEK +<br>materials (rare)</div>
+      </div>
+      <div class="risk-item mid">
+        <div class="risk-dot"></div>
+        <div class="risk-body">
+          <div class="risk-name">Seasonal tyre swap labour</div>
+          <div class="risk-desc">The FSL covers replacement tyres when worn, but <strong>workshop labour for seasonal swaps</strong> (summer → winter → summer, twice a year) may not be included. If not covered, this costs ~500–800 SEK per swap at Mekonomen/Däckia. Over 4 years: ~4 000–6 400 SEK total. <strong>Confirm with Arval</strong> before signing — this is a standard FSL clarification question.</div>
+        </div>
+        <div class="risk-cost">500–800 SEK<br>per swap</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Term comparison -->
+  <div class="section">
+    <h2 class="section-title">Term comparison — 36 vs 48 months</h2>
+    <div class="table-wrap">
+      <table class="cost-table compare-table">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th class="col-alt">36 months <span class="tag tag-estimate">Est.</span></th>
+            <th style="text-align:right">48 months</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>FSL monthly payment</td>
+            <td class="col-alt">~7 650 SEK/mo</td>
+            <td style="text-align:right;font-family:'Courier New',monospace;font-variant-numeric:tabular-nums;white-space:nowrap">6 852 SEK/mo</td>
+          </tr>
+          <tr>
+            <td>FSL total payments</td>
+            <td class="col-alt">~275 400</td>
+            <td style="text-align:right;font-family:'Courier New',monospace;font-variant-numeric:tabular-nums;white-space:nowrap">328 896</td>
+          </tr>
+          <tr>
+            <td>Parking total</td>
+            <td class="col-alt">43 200</td>
+            <td style="text-align:right;font-family:'Courier New',monospace;font-variant-numeric:tabular-nums;white-space:nowrap">57 600</td>
+          </tr>
+          <tr>
+            <td>Charging total</td>
+            <td class="col-alt">~36 000</td>
+            <td style="text-align:right;font-family:'Courier New',monospace;font-variant-numeric:tabular-nums;white-space:nowrap">~48 000</td>
+          </tr>
+          <tr>
+            <td>Down payment</td>
+            <td class="col-alt">30 000</td>
+            <td style="text-align:right;font-family:'Courier New',monospace;font-variant-numeric:tabular-nums;white-space:nowrap">30 000</td>
+          </tr>
+          <tr class="total-row">
+            <td>Total cost of use</td>
+            <td class="col-alt">≈ 384 600</td>
+            <td style="text-align:right;font-family:'Courier New',monospace;font-variant-numeric:tabular-nums;white-space:nowrap;color:var(--accent)">≈ 464 500</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="term-notes">
+      <div class="term-note-card highlighted">
+        <strong>36 months — lower total</strong>
+        ~80 000 SEK less overall. Monthly is ~800 SEK higher. Good if you want flexibility to switch cars after 3 years or prefer less long-term commitment. Kontrollbesiktning falls right at contract end — minor timing risk.
+      </div>
+      <div class="term-note-card">
+        <strong>48 months — lower monthly</strong>
+        ~800 SEK/month cheaper, but ~80 000 SEK more in total. Best if cash flow matters and you're comfortable keeping the car 4 years. Interior wear risk is higher with an extra year of family use.
+      </div>
+    </div>
+    <p class="note">36-month FSL estimate is ~11% higher than 48-month — typical for shorter leases. Confirm the exact 36-month price with Arval; Model Y AWD holds strong residual value in Sweden, so the real premium may be smaller. Excludes conditional costs and accessories. Home charging saves ~31 000 SEK (48m) or ~24 000 SEK (36m).</p>
+  </div>
+
+  <!-- Questions to confirm -->
+  <div class="section">
+    <h2 class="section-title">Questions to confirm with Arval before signing</h2>
+    <div class="risk-list">
+      <div class="risk-item mid">
+        <div class="risk-dot"></div>
+        <div class="risk-body">
+          <div class="risk-name">Are winter tyres (full set) included?</div>
+          <div class="risk-desc">The FSL covers tyre replacements when worn, but it is unclear whether a full winter tyre set is included at no cost or must be purchased separately. A winter set for the Model Y costs 8 000–15 000 SEK. Ask and get the answer in writing.</div>
+        </div>
+        <div class="risk-cost">0–15 000 SEK<br>if excluded</div>
+      </div>
+      <div class="risk-item mid">
+        <div class="risk-dot"></div>
+        <div class="risk-body">
+          <div class="risk-name">Is seasonal tyre swap labour included?</div>
+          <div class="risk-desc">Even if winter tyres are covered, the workshop cost for mounting/balancing (summer → winter → summer, twice a year) may be billed separately. Ask: "Ingår däckbyte i FSL-avtalet?" Over 4 years: ~4 000–6 400 SEK if not included.</div>
+        </div>
+        <div class="risk-cost">~4 000–6 400 SEK<br>over 4 years</div>
+      </div>
+      <div class="risk-item low">
+        <div class="risk-dot"></div>
+        <div class="risk-body">
+          <div class="risk-name">Who books the kontrollbesiktning — and what triggers the 2 188 SEK fee?</div>
+          <div class="risk-desc">Clarify whether Arval sends you a reminder and books it automatically, or whether you are responsible for initiating it. The 2 188 SEK charge applies if the inspection is missed — understand exactly what triggers it so you are not caught off guard.</div>
+        </div>
+        <div class="risk-cost">2 188 SEK<br>if missed</div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="doc-footer">
+    Prices based on Tesla.se configurations and Arval's published contract terms (May 2022). The FSL monthly figure is an estimate from Arval/Greenval and may be adjusted after credit approval. Charging cost calculated at ~5 SEK/kWh public charging — varies by network and whether home charging is added. Roadworthiness inspection (kontrollbesiktning) is required from the year the vehicle turns 3.
+  </footer>
+
+</div>
+</body>
+</html>
